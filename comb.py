@@ -21,4 +21,4 @@ def comb(n, k):
 n = int(input("--> "))
 k = int(input("--> "))
 
-print(f"C{n}{k} = {comb(n, k)}")
+print(f"C{n}, {k} = {comb(n, k)}")
