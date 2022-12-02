@@ -1,3 +1,10 @@
+def mdc(a, b):
+        while a%b != 0:
+            av = b
+            b = a%b
+            a = av
+        return b
+    
 class Fraction:
     
     def __init__(self, cima, baixo ):
@@ -11,11 +18,13 @@ class Fraction:
         if self.den == other.den:
             nNun = (self.num * 1) + (other.num * 1)
             nDen = self.den
+            
+            
         else:
             nNun = (self.num * other.den) + (other.num * self.den)
             nDen = self.den * other.den
-            
-        return Fraction(nNun, nDen)
+           
+        return Fraction(nNun//mdc(nNun, nDen), nDen//mdc(nNun, nDen))
         
     def __sub__(self, other):
         if self.den == other.den:
@@ -25,16 +34,18 @@ class Fraction:
             nNun = (self.num * other.den) - (other.num * self.den)
             nDen = self.den * other.den
             
-        return Fraction(nNun, nDen)
+        return Fraction(nNun//mdc(nNun, nDen), nDen//mdc(nNun, nDen))
             
     def __mul__(self, other):
         nNum = self.num * other.num
         nDen = self.den * other.den
-        return Fraction(nNum, nDen)
+        return Fraction(nNum//mdc(nNum, nDen), nDen//mdc(nNum, nDen))
     def __truediv__(self, other):
         n = self.num * other.den
         d = self.den * other.num
-        return Fraction(n, d)
+        return Fraction(n//mdc(n, d), d//mdc(n, d))
+    
+    
 ##MAIN##
 #Instanciando objetos
 f = Fraction(3, 8)
